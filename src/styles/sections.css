@@ -54,7 +54,8 @@
   width: 100%;
   aspect-ratio: 5 / 6;
   object-fit: cover;
-  border-radius: var(--radius-pill) var(--radius) var(--radius) var(--radius);
+  /* theme value: border-radius: 3px 3px 3px 80px */
+  border-radius: var(--radius) var(--radius) var(--radius) var(--radius-pill);
 }
 
 .about__media-small {
@@ -64,7 +65,7 @@
   width: 55%;
   aspect-ratio: 1 / 1;
   object-fit: cover;
-  border-radius: var(--radius) var(--radius) var(--radius) var(--radius-pill);
+  border-radius: var(--radius);
   border: 12px solid #fff;
   box-shadow: 0 25px 60px rgba(31, 30, 23, 0.14);
 }
@@ -303,7 +304,7 @@
   width: 62%;
   aspect-ratio: 4 / 3;
   object-fit: cover;
-  border-radius: var(--radius) var(--radius) var(--radius) var(--radius-pill);
+  border-radius: var(--radius);
   border: 10px solid var(--c-dark);
 }
 
@@ -490,7 +491,7 @@
   width: 100%;
   aspect-ratio: 4 / 3.4;
   object-fit: cover;
-  border-radius: var(--radius-pill) var(--radius) var(--radius) var(--radius);
+  border-radius: var(--radius) var(--radius) var(--radius) var(--radius-pill);
 }
 
 .benefits-two__play {
