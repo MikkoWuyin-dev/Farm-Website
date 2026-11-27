@@ -450,6 +450,7 @@
 }
 
 .drawer__sub {
+  display: block;
   padding: 8px 0 8px 18px;
   font-size: 15px;
   font-weight: 600;
@@ -892,7 +893,7 @@
     margin-top: 40px;
   }
   .hero__title--script {
-    font-size: 96px;
+    font-size: min(96px, 20vw);
     letter-spacing: -2px;
   }
   .hero__title--plain {
@@ -911,6 +912,27 @@
     padding: 12px 34px;
   }
   .hero__video span:last-child {
+    display: none;
+  }
+  .hero__video {
+    left: 20px;
+    bottom: 22px;
+  }
+  .play-dot {
+    width: 48px;
+    height: 48px;
+  }
+  .hero-slide-num {
+    left: auto;
+    right: 20px;
+    bottom: 30px;
+    transform: none;
+    gap: 14px;
+  }
+  .hero-slide-num__btn {
+    font-size: 13px;
+  }
+  .hero-slide-num__btn span {
     display: none;
   }
 }

@@ -150,6 +150,7 @@
   padding: 70px 0;
   display: grid;
   place-items: center;
+  background-color: #6d6353;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
@@ -263,6 +264,18 @@
   padding: 150px 0;
   background: var(--c-dark);
   overflow: hidden;
+}
+
+.dark-section .heading__sub {
+  color: var(--c-accent);
+}
+
+.dark-section .heading__title {
+  color: #fff;
+}
+
+.dark-section .heading__text {
+  color: rgba(255, 255, 255, 0.72);
 }
 
 .dark-section::before {

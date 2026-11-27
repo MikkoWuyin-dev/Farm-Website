@@ -15,9 +15,10 @@ no jQuery).
 
 ```bash
 npm install
-npm run dev      # http://localhost:5173  (binds 0.0.0.0, works behind the sandbox preview proxy)
-npm run build    # type-check + production bundle into dist/
-npm run preview  # serve the production build on :4173
+npm run dev       # http://localhost:5173  (binds 0.0.0.0, works behind the sandbox preview proxy)
+npm run build     # type-check + production bundle into dist/
+npm run preview   # serve the production build on :4173
+npm run qa:shots  # headless-Chromium visual audit → ./shots (see "Visual QA" below)
 ```
 
 ## How the reference was reverse-engineered
@@ -95,6 +96,34 @@ policy and failure fallback.
 Every hover, reveal, counter and slider transition is hand-written CSS/`IntersectionObserver` — no
 animation library — and everything respects `prefers-reduced-motion`.
 
+## Visual QA (headless Chromium)
+
+`tools/visual-check.mjs` drives a real headless Chromium against the dev server and produces one
+screenshot per section at 1440×900 and 390×844, plus `shots/report.json` (section heights,
+horizontally overflowing sections, console/page errors, loaded font faces) and a mobile-drawer shot.
+Scroll-reveal animations are frozen during capture so shots are deterministic, and the page is
+walked first so lazy images load.
+
+```bash
+npm run qa:shots
+```
+
+Chromium comes from `@sparticuz/chromium` (it ships its binary inside the npm tarball, so it works in
+sandboxes with registry-only network access). On minimal Linux images the helper extracts Chromium's
+bundled Amazon Linux 2023 libraries and points `LD_LIBRARY_PATH` at them so `libnss3`/`libnspr4`
+resolve.
+
+What the audit caught and fixed:
+
+* dark services section was rendering `#2b2b2b` headings on the near-black background — now white;
+* the mobile hero's slide counter collided with the “Watch Our Video” bubble — the counter now docks
+  bottom-right and the play button bottom-left;
+* mobile drawer sub-links (`.drawer__sub`) had no `display: block`, so the Pages children flowed in
+  one long inline row;
+* the 96px script headline overflowed a 390px viewport — it now scales with `min(96px, 20vw)`;
+* the wide script banner had no colour behind its photo, so a failed/slow image left a grey band —
+  it now has a warm base tone.
+
 ## Project structure
 
 ```
@@ -119,7 +148,9 @@ src/
     base.css              reset + layout primitives
     components.css        header, hero, buttons, headings, motion
     sections.css          all page sections + responsive rules
-tools/download-assets.mjs mirror the CDN media for a fully offline build
+tools/
+  download-assets.mjs     mirror the CDN media for a fully offline build
+  visual-check.mjs        headless-Chromium screenshot + layout audit
 ```
 
 ## Responsive behaviour
@@ -138,3 +169,6 @@ padding). The hero keeps its 978px desktop height and degrades to a content-driv
 * The original promotional MP4. The hero lightbox shows the poster plus a note; drop a video into
   `public/media/` and wire it in `Hero.tsx` to enable playback.
 * Server-side form handlers — the contact and newsletter forms validate and confirm locally.
+* Photography is hot-linked from the theme CDN (see *Imagery*); run `npm run assets:local` to vendor
+  it. In the build sandbox the CDN is unreachable, so the screenshots under `npm run qa:shots` show
+  the inline SVG fallback instead of the photographs — layout, spacing and type are unaffected.

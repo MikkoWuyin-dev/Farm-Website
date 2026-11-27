@@ -34,3 +34,6 @@ scraped-*
 
 # tsc incremental
 *.tsbuildinfo
+
+# headless QA screenshots
+shots
