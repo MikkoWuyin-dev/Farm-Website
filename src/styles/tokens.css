@@ -1,0 +1,35 @@
+/* ------------------------------------------------------------------
+   Design tokens — sampled from the Agrarium theme stylesheets
+   (elementor post-158.css + theme palette)
+------------------------------------------------------------------ */
+:root {
+  /* palette */
+  --c-dark: #1f1e17;
+  --c-dark-soft: #2b2b2b;
+  --c-accent: #eece38;
+  --c-accent-dark: #e2bf22;
+  --c-cream: #f0e6d7;
+  --c-offwhite: #f9f6ef;
+  --c-white: #ffffff;
+  --c-heading: #2b2b2b;
+  --c-heading-soft: #554d45;
+  --c-text: #555555;
+  --c-text-soft: #7c7c7c;
+  --c-line: #f2f5fa;
+  --c-line-dark: rgba(255, 255, 255, 0.14);
+
+  /* type */
+  --font-body: 'Manrope', 'Helvetica Neue', Arial, sans-serif;
+  --font-script: 'Kaushan Script', 'Segoe Script', cursive;
+
+  /* layout */
+  --container: 1170px;
+  --container-wide: 1574px;
+  --gutter: 30px;
+  --radius: 3px;
+  --radius-pill: 80px;
+
+  /* motion */
+  --ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --dur: 0.35s;
+}
